@@ -30,4 +30,4 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           base: ${{ env.MERGE_BASE }}
-          branch: ${{ env.MERGE_FROM }}
+          branch: ${{ env.MERGE_INTO }}
