@@ -12,18 +12,18 @@ jobs:
       - name: Checkout base branch
         uses: actions/checkout@v2
         with:
-          ref: ${{ MERGE_BASE }}
+          ref: ${{ env.MERGE_BASE }}
       - name: Push to pull request branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ MERGE_INTO }}
+          branch: ${{ env.MERGE_INTO }}
           force: true 
       - name: Merge branch
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
-          from_branch: ${{ MERGE_FROM }}
-          target_branch: ${{ MERGE_INTO }}
+          from_branch: ${{ env.MERGE_FROM }}
+          target_branch: ${{ env.MERGE_INTO }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
       
