@@ -27,7 +27,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message_template: "Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
+        uses: thomaseizinger/create-pull-request@master
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          title: "Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
           base: ${{ env.MERGE_BASE }}
-          branch: ${{ env.MERGE_INTO }}
+          head: ${{ env.MERGE_INTO }}
