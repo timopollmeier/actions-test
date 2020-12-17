@@ -21,4 +21,4 @@ jobs:
           type: now
           from_branch: release
           target_branch: auto-merge-into-master
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
