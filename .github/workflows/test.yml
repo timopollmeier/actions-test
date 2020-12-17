@@ -4,6 +4,7 @@ name: test
 
 # Controls when the action will run. 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '32,37 * * * *'
 
