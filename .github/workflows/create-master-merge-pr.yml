@@ -1,8 +1,6 @@
 name: create-master-merge-pr
 on:
-  - workflow_dispatch
-  - schedule:
-    - cron: 53 * * * *
+  [workflow_dispatch, schedule cron: "53 * * * *"]
 jobs:
   create-merge-pr:
     env:
