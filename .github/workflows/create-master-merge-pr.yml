@@ -33,7 +33,7 @@ jobs:
         id: count_commits
         run: 'git fetch && echo ::set-output name=commits::$(git log --oneline ..origin/${{ env.MERGE_INTO }} -- | wc -l)'
       - name: List commits
-        run: 'git log origin/${{ env.MERGE_BASE }}..origin/${{ env.MERGE_INTO }} --'
+        run: 'git log origin/${{ env.MERGE_BASE }}..origin/${{ env.MERGE_INTO }} -- && echo "--" && git log origin/${{ env.MERGE_BASE }} && echo "--" && git log origin/${{ env.MERGE_INTO }}'
 #      - name: Create pull request
 #        id: create_pr
 #        if: ${{ steps.count_commits.outputs.commits > 0 }}
