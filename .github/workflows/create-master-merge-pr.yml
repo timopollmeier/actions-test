@@ -9,10 +9,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+      - name: Push to auto-merge-into-master
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: auto-merge-into-master
+          force: true 
       - name: Merge branch
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
           from_branch: release
-          target_branch: merge-into-master
+          target_branch: auto-merge-into-master
           github_token: ${{ github.token }}
