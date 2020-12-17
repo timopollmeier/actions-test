@@ -25,8 +25,9 @@ jobs:
           source_ref: ${{ env.MERGE_FROM }}
           target_branch: ${{ env.MERGE_INTO }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message_template: "Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}
-          
-          
-          This automatically merges the branch ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}."
-
+          commit_message_template: "Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: ${{ env.MERGE_BASE }}
+          branch: ${{ env.MERGE_INTO }}
