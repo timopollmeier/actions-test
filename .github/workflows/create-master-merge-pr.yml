@@ -3,22 +3,26 @@ on:
   workflow_dispatch
 jobs:
   create-merge-pr:
+    env:
+      MERGE_BASE: main
+      MERGE_FROM: release-1.0
+      MERGE_INTO: auto-merge-into-master
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout ${{ MERGE_BASE }}
         uses: actions/checkout@v2
         with:
-          ref: main
-      - name: Push to auto-merge-into-master
+          ref: ${{ MERGE_BASE }}
+      - name: Push to ${{ MERGE_INTO }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: auto-merge-into-master
+          branch: ${{ MERGE_INTO }}
           force: true 
-      - name: Merge branch
+      - name: Merge ${{ MERGE_FROM }} branch
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
-          from_branch: release-1.0
-          target_branch: auto-merge-into-master
+          from_branch: ${{ MERGE_FROM }}
+          target_branch: ${{ MERGE_INTO }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
