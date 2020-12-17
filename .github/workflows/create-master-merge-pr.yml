@@ -19,6 +19,6 @@ jobs:
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
-          from_branch: release
+          from_branch: release-1.0
           target_branch: auto-merge-into-master
           github_token: ${{ secrets.GITHUB_TOKEN }}
