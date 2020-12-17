@@ -31,7 +31,7 @@ jobs:
           commit_message_template: "Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
       - name: Count commits 
         id: count_commits
-        run: 'echo ::set-output name=commits::$(git log --oneline main..release-1.0 | wc -l)'
+        run: 'git fetch ${{ env.MERGE_INTO }} && echo ::set-output name=commits::$(git log --oneline ${{ env.MERGE_BASE }}..${{ env.MERGE_INTO }} | wc -l)'
       - name: Create pull request
         id: create_pr
         if: ${{ steps.count_commits.outputs.commits > 0 }}
