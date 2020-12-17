@@ -32,15 +32,17 @@ jobs:
       - name: Count commits 
         id: count_commits
         run: 'git fetch && echo ::set-output name=commits::$(git log --oneline ..origin/${{ env.MERGE_INTO }} -- | wc -l)'
-      - name: Create pull request
-        id: create_pr
-        if: ${{ steps.count_commits.outputs.commits > 0 }}
-        uses: thomaseizinger/create-pull-request@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          title: "Merge ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
-          body: "This PR was generated automatically and
-                 merges ${{ steps.count_commits.outputs.commits }} commit(s)
-                 from the ${{ env.MERGE_FROM }} branch into ${{ env.MERGE_BASE }}."
-          base: ${{ env.MERGE_BASE }}
-          head: ${{ env.MERGE_INTO }}
+      - name: List commits
+        run: 'git log --oneline ..origin/${{ env.MERGE_INTO }} --'
+#      - name: Create pull request
+#        id: create_pr
+#        if: ${{ steps.count_commits.outputs.commits > 0 }}
+#        uses: thomaseizinger/create-pull-request@master
+#        with:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          title: "Merge ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}"
+#          body: "This automatically generated PR
+#                 merges ${{ steps.count_commits.outputs.commits }} commit(s)
+#                 from the ${{ env.MERGE_FROM }} branch into ${{ env.MERGE_BASE }}."
+#          base: ${{ env.MERGE_BASE }}
+#          head: ${{ env.MERGE_INTO }}
