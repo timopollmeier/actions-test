@@ -9,17 +9,17 @@ jobs:
       MERGE_INTO: auto-merge-into-master
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout base branch
+      - name: Checkout base branch ${{ env.MERGE_BASE }}
         uses: actions/checkout@v2
         with:
           ref: ${{ env.MERGE_BASE }}
-      - name: Push to pull request branch
+      - name: Push to pull request branch ${{ env.MERGE_INTO }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ env.MERGE_INTO }}
           force: true 
-      - name: Merge branch
+      - name: Merge branch ${{ env.MERGE_FROM }}
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
