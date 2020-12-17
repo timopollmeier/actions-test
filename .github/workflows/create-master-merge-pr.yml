@@ -25,5 +25,5 @@ jobs:
           source_ref: ${{ env.MERGE_FROM }}
           target_branch: ${{ env.MERGE_INTO }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message_template: Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }] 
+          commit_message_template: Automatic merge of ${{ env.MERGE_FROM }} into ${{ env.MERGE_BASE }}
       
