@@ -1,6 +1,15 @@
+#
+# Merge fixes from the latest release branch into the master branch
+#
 name: create-master-merge-pr
+
 on:
+  # Can be triggered manually
   workflow_dispatch:
+  # Run on a schedule (every Monday morning)
+#  schedule:
+#    - cron: '30 6 * * MON'
+
 jobs:
   create-merge-pr:
     env:
