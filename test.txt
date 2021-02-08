@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 This is a test file with some new text...
 123456
 567890
+=======
+This is a test text file.
+abc
+>>>>>>> 5e38d35... Update test.txt
